@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: pinado-db
+    environment:
+      POSTGRES_USER: pinado
+      POSTGRES_PASSWORD: pinado
+      POSTGRES_DB: pinado
+    ports:
+      # só nesta máquina: o banco não fica visível pra rede
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - pinado-data:/var/lib/postgresql/data
+
+volumes:
+  pinado-data:
